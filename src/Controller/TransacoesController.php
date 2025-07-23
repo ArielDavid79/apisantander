@@ -134,7 +134,11 @@ final class TransacoesController extends AbstractController
             } else if ($conta->getId() === $transacao->getContaDestino()->getId()) {
                 $transacaoDto->setTipo('RECEBEU');
             }
-
+            $transacaoDto = new TransacaoExtratoDto();
+            $transacaoDto->setId($transacao->getId());
+            $transacaoDto->setValor($transacao->getValor());
+            $transacaoDto->setDataHora($transacao->getDataHora());  
+            $transacaoDto->setTipo("ENVIOU");
             // origem
             $origem = $transacao->getContaOrigem();
             $contaOrigemDto = new ContaDto();
